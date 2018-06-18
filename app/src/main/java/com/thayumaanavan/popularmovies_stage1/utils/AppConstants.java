@@ -1,9 +1,11 @@
 package com.thayumaanavan.popularmovies_stage1.utils;
 
+import com.thayumaanavan.popularmovies_stage1.BuildConfig;
+
 public class AppConstants {
     public static final String BASE_URL = "https://api.themoviedb.org/3/";
     public static final String API_KEY = "api_key";
-    public static final String API_KEY_VALUE = "YOUR_API_KEY";
+    public static final String API_KEY_VALUE = BuildConfig.API_KEY;
 
     public static final String POSTER_BASE_URL = "http://image.tmdb.org/t/p/w185";
     public static final String BACKDROP_BASE_URL = "http://image.tmdb.org/t/p/w342";
