@@ -22,10 +22,12 @@ import butterknife.OnClick;
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
     private List<Movie> movieList;
     private Context context;
+    private MovieItemClickListener listener;
 
-    public MoviesAdapter(Context context, List<Movie> movieList){
+    public MoviesAdapter(Context context, List<Movie> movieList,MovieItemClickListener listener){
         this.movieList = movieList;
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -60,9 +62,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
         @OnClick(R.id.iv_list_item)
         public void onClick(){
-            Intent intent = new Intent(itemView.getContext(), DetailsActivity.class);
+            listener.onItemClick(movieList.get(getAdapterPosition()));
+          /*  Intent intent = new Intent(itemView.getContext(), DetailsActivity.class);
             intent.putExtra(AppConstants.MOVIE_DETAILS, movieList.get(getAdapterPosition()));
             itemView.getContext().startActivity(intent);
+            */
         }
     }
 }

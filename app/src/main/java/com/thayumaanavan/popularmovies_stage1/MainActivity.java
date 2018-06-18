@@ -1,5 +1,6 @@
 package com.thayumaanavan.popularmovies_stage1;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -17,6 +18,7 @@ import com.thayumaanavan.popularmovies_stage1.models.Movie;
 import com.thayumaanavan.popularmovies_stage1.models.Movies;
 import com.thayumaanavan.popularmovies_stage1.network.ApiClient;
 import com.thayumaanavan.popularmovies_stage1.network.MovieService;
+import com.thayumaanavan.popularmovies_stage1.utils.AppConstants;
 import com.thayumaanavan.popularmovies_stage1.utils.NetworkUtils;
 
 import java.util.ArrayList;
@@ -68,7 +70,14 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        moviesAdapter = new MoviesAdapter(this, movieList);
+        moviesAdapter = new MoviesAdapter(this, movieList, new MovieItemClickListener() {
+            @Override
+            public void onItemClick(Movie movie) {
+                Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+                intent.putExtra(AppConstants.MOVIE_DETAILS, movie);
+                startActivity(intent);
+            }
+        });
         moviesAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(moviesAdapter);
 
