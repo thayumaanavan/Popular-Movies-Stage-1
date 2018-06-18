@@ -56,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
                 getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE?5:2));
         recyclerView.setHasFixedSize(true);
 
-        movieList = new ArrayList<>();
         if(savedInstanceState == null || !savedInstanceState.containsKey(MOVIE_LIST)){
+            movieList = new ArrayList<>();
             showTopRatedMovies();
         }else if (savedInstanceState.containsKey(MOVIE_LIST)){
             if(!NetworkUtils.isOnline(this)){
@@ -69,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
                     getSupportActionBar().setTitle(savedInstanceState.getString(SORT_BY));
             }
         }
+
+        if(movieList == null)
+            movieList = new ArrayList<>();
 
         moviesAdapter = new MoviesAdapter(this, movieList, new MovieItemClickListener() {
             @Override
